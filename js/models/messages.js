@@ -150,6 +150,7 @@
           const deleteData =
             Attachment.deleteData(migrationContext.deleteAttachmentData);
           await Promise.all(attachments.map(deleteData));
+          return;
         },
         /* jshint ignore:end */
         /* eslint-disable */
