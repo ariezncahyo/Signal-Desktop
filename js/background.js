@@ -14,7 +14,7 @@
 ;(function() {
     'use strict';
 
-    const { IdleDetector, MessageMigration } = Signal;
+    const { IdleDetector, MessageDataMigrator } = Signal.Workflow;
     const { Errors, Message } = window.Signal.Types;
     const { context: migrationsContext } = window.Signal.Migrations;
     const upgradeMessageSchema = message =>
@@ -79,11 +79,11 @@
     storage.fetch();
 
 
-    /* eslint-enable */
+  /* eslint-enable */
   /* jshint ignore:start */
   const idleDetector = new IdleDetector();
   idleDetector.on('idle', async () => {
-    const results = await MessageMigration.processNext({
+    const results = await MessageDataMigrator.processNext({
       BackboneMessage: Whisper.Message,
       BackboneMessageCollection: Whisper.MessageCollection,
       count: 3,

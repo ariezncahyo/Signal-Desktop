@@ -116,13 +116,9 @@
   const { IdleDetector} = require('./js/modules/idle_detector');
 
   window.Signal = window.Signal || {};
-  window.Signal.IdleDetector = IdleDetector;
-  window.Signal.Logs = require('./js/modules/logs');
-  window.Signal.MessageMigration = require('./js/modules/messages_migration');
-  window.Signal.OS = require('./js/modules/os');
   window.Signal.Backup = require('./js/modules/backup');
   window.Signal.Crypto = require('./js/modules/crypto');
-
+  window.Signal.Logs = require('./js/modules/logs');
   window.Signal.Migrations = window.Signal.Migrations || {};
   // Injected context functions to keep `Message` agnostic from Electron:
   window.Signal.Migrations.context = {
@@ -131,13 +127,17 @@
     writeAttachmentData,
   };
   window.Signal.Migrations.V17 = require('./js/modules/migrations/17');
-
+  window.Signal.OS = require('./js/modules/os');
   window.Signal.Types = window.Signal.Types || {};
   window.Signal.Types.Attachment = require('./js/modules/types/attachment');
   window.Signal.Types.Errors = require('./js/modules/types/errors');
   window.Signal.Types.Message = require('./js/modules/types/message');
   window.Signal.Types.MIME = require('./js/modules/types/mime');
   window.Signal.Types.Settings = require('./js/modules/types/settings');
+  window.Signal.Workflow = {};
+  window.Signal.Workflow.IdleDetector = IdleDetector;
+  window.Signal.Workflow.MessageDataMigrator =
+    require('./js/modules/messages_data_migrator');
 
   // We pull this in last, because the native module involved appears to be sensitive to
   //   /tmp mounted as noexec on Linux.
