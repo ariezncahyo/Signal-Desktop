@@ -602,7 +602,7 @@
         return event.confirm();
       }
 
-      const upgradedMessage = upgradeMessageSchema(data.message);
+      const upgradedMessage = await upgradeMessageSchema(data.message);
       await ConversationController.getOrCreateAndWait(
         messageDescriptor.id,
         messageDescriptor.type
